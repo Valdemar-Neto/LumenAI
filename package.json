@@ -1,0 +1,27 @@
+{
+  "name": "hf-site-agent",
+  "version": "0.1.0",
+  "description": "Agente de IA que gera sites estaticos usando a API da Hugging Face (Inference Providers) e versiona o resultado num repositorio GitHub, com deploy automatico via GitHub Pages.",
+  "type": "module",
+  "private": true,
+  "scripts": {
+    "generate": "tsx src/cli.ts",
+    "serve": "tsx src/server.ts",
+    "dev:api": "tsx watch src/server.ts",
+    "dev:web": "npm run dev --prefix web",
+    "dev": "concurrently -n api,web -c green,cyan \"npm:dev:api\" \"npm:dev:web\"",
+    "build:web": "npm run build --prefix web",
+    "build": "tsc -p tsconfig.json"
+  },
+  "dependencies": {
+    "dotenv": "^16.4.5",
+    "openai": "^4.68.0",
+    "simple-git": "^3.27.0"
+  },
+  "devDependencies": {
+    "@types/node": "^22.7.0",
+    "concurrently": "^9.2.4",
+    "tsx": "^4.19.0",
+    "typescript": "^5.6.0"
+  }
+}
